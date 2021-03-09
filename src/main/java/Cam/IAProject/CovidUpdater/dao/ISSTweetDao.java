@@ -1,4 +1,4 @@
 package Cam.IAProject.CovidUpdater.dao;
 
-public interface DistrictTweetDao {
+public interface ISSTweetDao {
 }
