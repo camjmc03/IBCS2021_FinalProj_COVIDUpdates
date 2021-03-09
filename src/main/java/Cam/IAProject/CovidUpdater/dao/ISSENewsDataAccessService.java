@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public class ISSENewsDataAccessService implements ISSENewsDao{
     private static List<ISSENews> DB = new ArrayList<>();
+    //TODO: connect to database
     @Override
     public int insertISSENews(UUID id, ISSENews eNews) {
         DB.add(new ISSENews(id,eNews.getDate(), eNews.getName(), eNews.getLink()));
