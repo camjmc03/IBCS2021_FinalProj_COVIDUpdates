@@ -18,5 +18,5 @@ public interface SHSEnewsDao {
 
     Optional<SHSENews> selectSHSENewsByID(UUID id);
 
-    List <SHSENews> selectSHSENewsRange();
+    List <SHSENews> selectSHSENewsRange(int r1, int r2);
 }

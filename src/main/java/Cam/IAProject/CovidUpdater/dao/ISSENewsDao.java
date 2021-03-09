@@ -19,5 +19,5 @@ public interface ISSENewsDao {
 
     Optional<ISSENews> selectISSENewsByID(UUID id);
 
-    List <ISSENews> selectISSENewsRange();
+    List <ISSENews> selectISSENewsRange(int r1, int r2);
 }
