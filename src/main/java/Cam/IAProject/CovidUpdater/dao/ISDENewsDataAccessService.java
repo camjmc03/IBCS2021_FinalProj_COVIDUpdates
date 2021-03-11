@@ -16,7 +16,6 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
     private static List<ISDENews> DB = new ArrayList<>();
     //TODO: connect to database
     @Override
-
     //id is needed here but if none given then default method from implemented interface generates a random one
     public int insertISDENews(UUID id, ISDENews eNews) {
         DB.add(new ISDENews(id,eNews.getDate(), eNews.getName(), eNews.getLink()));

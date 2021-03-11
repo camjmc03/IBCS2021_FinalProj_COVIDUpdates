@@ -7,12 +7,12 @@ import java.util.UUID;
 
 public class ISDENews {
     private final UUID id;
-    private final Date date;
+    private final String date;
     private final String name;
     private final String link;
 
     public ISDENews(@JsonProperty("id") UUID id,
-                    @JsonProperty("date") Date date,
+                    @JsonProperty("date") String date,
                     @JsonProperty("name") String name,
                     @JsonProperty("link") String link) {
         this.id = id;
@@ -25,7 +25,7 @@ public class ISDENews {
         return id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
