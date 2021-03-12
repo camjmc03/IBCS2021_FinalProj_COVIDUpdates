@@ -25,6 +25,7 @@ public class ISDENewsController {
     public void addISDENews(@RequestBody ISDENews isdENews){
         isdENewsService.addISDENews(isdENews);
     }
+    //TODO: add a password function here so that only I can make post requests
 
     //method mapped as a get method by spring annotation, api calls it and ISDENews objects are returned
     @GetMapping

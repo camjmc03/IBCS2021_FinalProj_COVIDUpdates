@@ -1,6 +1,7 @@
 package Cam.IAProject.CovidUpdater.service;
 
 import Cam.IAProject.CovidUpdater.dao.ISDENewsDao;
+import Cam.IAProject.CovidUpdater.dao.ISDENewsDataAccessService;
 import Cam.IAProject.CovidUpdater.model.ISDENews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,10 +15,10 @@ import java.util.UUID;
 @Service
 public class ISDENewsService {
 
-    private final ISDENewsDao isdENewsDao;
+    private final ISDENewsDataAccessService isdENewsDao;
 
     @Autowired
-    public ISDENewsService(@Qualifier("ISDENewsDao") ISDENewsDao isdENewsDao){
+    public ISDENewsService(@Qualifier("ISDENewsDao") ISDENewsDataAccessService isdENewsDao){
         this.isdENewsDao = isdENewsDao;
     }
 
