@@ -38,4 +38,9 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
     public List<ISDENews> selectISDENewsRange(int r1, int r2) {
         return DB.subList(r1,r2);
     }
+
+    @Override
+    public void scrapeISDENews() {
+
+    }
 }

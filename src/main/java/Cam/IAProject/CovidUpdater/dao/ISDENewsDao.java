@@ -21,4 +21,6 @@ public interface ISDENewsDao {
     Optional<ISDENews> selectISDENewsByID(UUID id);
 
     List <ISDENews> selectISDENewsRange(int r1, int r2);
+
+    void scrapeISDENews();
 }

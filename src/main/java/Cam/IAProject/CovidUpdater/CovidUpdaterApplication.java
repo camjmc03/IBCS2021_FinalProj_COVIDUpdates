@@ -8,6 +8,9 @@ public class CovidUpdaterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CovidUpdaterApplication.class, args);
+
 	}
 
 }
+
+
