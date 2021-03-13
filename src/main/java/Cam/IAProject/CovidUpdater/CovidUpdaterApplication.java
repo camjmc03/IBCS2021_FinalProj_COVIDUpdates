@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CovidUpdaterApplication {
 
 	public static void main(String[] args) {
+		//runs the application and starts the server setup process
 		SpringApplication.run(CovidUpdaterApplication.class, args);
 
 	}
