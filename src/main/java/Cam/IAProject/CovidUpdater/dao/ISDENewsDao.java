@@ -22,5 +22,4 @@ public interface ISDENewsDao {
 
     List <ISDENews> selectISDENewsRange(int r1, int r2);
 
-    void scrapeISDENews();
 }

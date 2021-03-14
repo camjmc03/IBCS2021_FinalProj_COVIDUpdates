@@ -7,12 +7,12 @@ import java.util.UUID;
 
 public class SHSENews {
     private final UUID id;
-    private final Date date;
-    private final String name;
-    private final String link;
+    private String date;
+    private String name;
+    private String link;
 
     public SHSENews(@JsonProperty("id") UUID id,
-                 @JsonProperty("date") Date date,
+                 @JsonProperty("date") String date,
                  @JsonProperty("name") String name,
                  @JsonProperty("link") String link) {
         this.id = id;
@@ -26,7 +26,7 @@ public class SHSENews {
         return id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -36,5 +36,15 @@ public class SHSENews {
 
     public String getLink() {
         return link;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setLink(String link){
+        this.link = link;
+    }
+    public void setDate(String date){
+        this.date = date;
     }
 }

@@ -34,7 +34,4 @@ public class ISDENewsService {
         return isdENewsDao.selectISDENewsByID(id);
     }
 
-    public void updateISDENewsDB() {
-        isdENewsDao.scrapeISDENews();
-    }
 }

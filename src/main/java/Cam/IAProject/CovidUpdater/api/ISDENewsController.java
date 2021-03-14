@@ -30,7 +30,6 @@ public class ISDENewsController {
     //method mapped as a get method by spring annotation, api calls it and ISDENews objects are returned
     @GetMapping
     public List<ISDENews> getALLISDENews(){
-        isdENewsService.updateISDENewsDB();
         return isdENewsService.getAllISDENews();
     }
 
