@@ -68,8 +68,9 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
     private void updateDB() throws IOException {
         ISDENewsScraper scraper = new ISDENewsScraper("https://apps.issaquah.wednet.edu/apidev/enews/lists/1/posts");
         ArrayList<ISDENews> articles = scraper.getObjects();
+        System.out.println(articles);//todo:delete
         for (int i = 0; i < articles.size(); i++){
-            if (DB.size() < 1) {
+            if (DB.size() == 0) {
                 for (ISDENews enews: DB) {
                     if (!enews.getDate().equals(articles.get(i).getDate()) || !enews.getName().equals(articles.get(i).getName())){
                         DB.add(articles.get(i));
@@ -82,6 +83,7 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
             }
 
         }
+        System.out.println(DB);//todo:delete
     }
 
     private void DBInsertISDENews(ISDENews enews) {
