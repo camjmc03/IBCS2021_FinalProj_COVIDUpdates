@@ -1,7 +1,7 @@
 package Cam.IAProject.CovidUpdater.dao;
 
-import Cam.IAProject.CovidUpdater.model.ISDENews;
-import Cam.IAProject.CovidUpdater.model.ISDENewsScraper;
+import Cam.IAProject.CovidUpdater.model.SHSENews;
+import Cam.IAProject.CovidUpdater.model.SHSENewsScraper;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -14,24 +14,24 @@ import java.util.UUID;
 import java.sql.*;
 
 //Repository annotation sets up the tag to be used in the @Qualifier annotation in the corresponding service class
-@Repository("ISDENewsDao")
+@Repository("SHSENewsDao")
 
-public class ISDENewsDataAccessService implements ISDENewsDao {
+public class SHSENewsDataAccessService implements SHSENewsDao {
 
-    private static List<ISDENews> DB = new ArrayList<>();
+    private static List<SHSENews> DB = new ArrayList<>();
     @Override
     //id is needed here but if none given then default method from implemented interface generates a random one
-    public int insertISDENews(UUID id, ISDENews eNews) {
-        DB.add(new ISDENews(id,eNews.getDate(), eNews.getName(), eNews.getLink()));
+    public int insertSHSENews(UUID id, SHSENews eNews) {
+        DB.add(new SHSENews(id,eNews.getDate(), eNews.getName(), eNews.getLink()));
         return 1;
     }
 
     @Override
-    public List<ISDENews> selectAllISDENews() {
+    public List<SHSENews> selectAllSHSENews() {
         try {
             updateDB();
         }catch(MalformedURLException e){
-            System.out.println("Unable to update ISD ENews Articles. Could not connect to the ISD ENews Archive: " + e);
+            System.out.println("Unable to update SHS ENews Articles. Could not connect to the SHS ENews Archive: " + e);
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -39,25 +39,25 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
     }
 
     @Override
-    public Optional<ISDENews> selectISDENewsByID(UUID id) {
+    public Optional<SHSENews> selectSHSENewsByID(UUID id) {
         try {
             updateDB();
         }catch(MalformedURLException e){
-            System.out.println("Unable to update ISD ENews Articles. Could not connect to the ISD ENews Archive: " + e);
+            System.out.println("Unable to update SHS ENews Articles. Could not connect to the SHS ENews Archive: " + e);
         }catch(IOException e){
             e.printStackTrace();
         }
         return DB.stream()
-                .filter(ISDENews -> ISDENews.getId().equals(id))
+                .filter(SHSENews -> SHSENews.getId().equals(id))
                 .findFirst();
     }
 
     @Override
-    public List<ISDENews> selectISDENewsRange(int r1, int r2) {
+    public List<SHSENews> selectSHSENewsRange(int r1, int r2) {
         try {
             updateDB();
         }catch(MalformedURLException e){
-            System.out.println("Unable to update ISD ENews Articles. Could not connect to the ISD ENews Archive: " + e);
+            System.out.println("Unable to update SHS ENews Articles. Could not connect to the SHS ENews Archive: " + e);
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -66,27 +66,27 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
 
 
     private void updateDB() throws IOException {
-        ISDENewsScraper scraper = new ISDENewsScraper("https://apps.issaquah.wednet.edu/apidev/enews/lists/1/posts");
-        ArrayList<ISDENews> articles = scraper.getObjects();
-        ArrayList<ISDENews> articlesToAdd = new ArrayList<>();
+        SHSENewsScraper scraper = new SHSENewsScraper("https://apps.issaquah.wednet.edu/apidev/enews/lists/18/posts");
+        ArrayList<SHSENews> articles = scraper.getObjects();
+        ArrayList<SHSENews> articlesToAdd = new ArrayList<>();
         for (int i = 0; i < articles.size(); i++){
             if (DB.size() > 0) {
-                for (ISDENews enews: DB) {
+                for (SHSENews enews: DB) {
                     if (!enews.getDate().equals(articles.get(i).getDate()) || !enews.getName().equals(articles.get(i).getName())){
                         articlesToAdd.add(articles.get(i));
-                        DBInsertISDENews(articles.get(i));
+                        DBInsertSHSENews(articles.get(i));
                     }
                 }
             }else{
                 DB.add(articles.get(i));
-                DBInsertISDENews(articles.get(i));
+                DBInsertSHSENews(articles.get(i));
             }
 
         }
         DB.addAll(articlesToAdd);
     }
 
-    private void DBInsertISDENews(ISDENews enews) {
+    private void DBInsertSHSENews(SHSENews enews) {
         Connection c;
         Statement stmt;
         try{
@@ -94,7 +94,7 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
             c = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\camjm\\OneDrive\\Desktop\\Documents\\school stuff\\CS Projects\\IA\\Product\\Backend\\CovidUpdater\\src\\main\\java\\Cam\\IAProject\\CovidUpdater\\database.db");
 
             stmt = c.createStatement();
-            String sql = "INSERT INTO ISDENews (ID, date, name, link) " +
+            String sql = "INSERT INTO SHSENews (ID, date, name, link) " +
                     "VALUES (\'" + enews.getId().toString() + "\', \'" +
                     enews.getDate() + "\', \'" +
                     enews.getName() + "\', \'" +
@@ -104,7 +104,7 @@ public class ISDENewsDataAccessService implements ISDENewsDao {
         } catch (ClassNotFoundException e) {
             System.out.println("could not load JDBC: " + e);
         } catch( SQLException e){
-            System.out.println("SQL error when inserting ISD ENews into Database: " + e);
+            System.out.println("SQL error when inserting SHS ENews into Database: " + e);
         }
     }
 }

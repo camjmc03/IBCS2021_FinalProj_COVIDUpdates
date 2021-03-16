@@ -25,12 +25,17 @@ public class ISDENewsController {
     public void addISDENews(@RequestBody ISDENews isdENews){
         isdENewsService.addISDENews(isdENews);
     }
-    //TODO: add a password function here so that only I can make post requests
 
     //method mapped as a get method by spring annotation, api calls it and ISDENews objects are returned
     @CrossOrigin
+    @GetMapping(path = "{r1}-{r2}")
+    public List<ISDENews> getALLISDENews(@PathVariable("r1")int r1, @PathVariable("r2") int r2){
+        return isdENewsService.getAllISDENews();
+    }
+
+    @CrossOrigin
     @GetMapping
-    public List<ISDENews> getALLISDENews(){
+    public List<ISDENews> getISDENewsRange(){
         return isdENewsService.getAllISDENews();
     }
 

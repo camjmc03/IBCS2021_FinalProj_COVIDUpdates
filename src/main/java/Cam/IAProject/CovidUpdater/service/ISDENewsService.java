@@ -22,6 +22,10 @@ public class ISDENewsService {
         this.isdENewsDao = isdENewsDao;
     }
 
+    public List<ISDENews> getISDENewsByRange(int r1, int r2){
+        return isdENewsDao.selectISDENewsRange(r1, r2);
+    }
+
     public int addISDENews(ISDENews isdENews){
         return isdENewsDao.insertISDENews(isdENews);
     }
